@@ -1,0 +1,235 @@
+// Doubly Linked List
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	struct node* prev;
+	int data;
+	struct node* next;
+};
+
+class Doubbly
+{
+	public:
+		node* newnode = NULL;
+		node* Head = NULL;
+		node* temp = NULL;
+
+		 node* createLL(int Data)
+		{
+			  newnode = new node();
+
+			if (newnode == NULL)
+			{
+				cout << "MEMORY IS NOT ALLOCATED" << endl;
+				return nullptr;
+			}
+			else
+			{
+				newnode->prev = NULL;
+				newnode->data = Data;
+				newnode->next = NULL;
+			}
+			return newnode;
+
+		}
+
+		void DoublyLL()
+		{
+			int Data;
+			cout << "Enter the DATA" << endl;
+			cin >> Data;
+
+			node* newnode1 = createLL(Data);
+
+			if (Head == NULL)
+			{
+				Head = newnode1;
+			}
+			else
+			{
+				 temp = Head;
+
+				 while (temp->next != NULL)
+				 {
+					 temp = temp->next;
+				 }
+
+					temp->next = newnode1;
+					newnode1->prev = temp;
+				
+			}
+			cout << endl;
+			//cout << endl;
+		}
+
+		void Display()
+		{
+			 temp = Head;
+
+			if (Head == NULL)
+			{
+				cout << "NO LL IS CREATED" << endl;
+			}
+			else
+			{
+				while (temp != NULL)
+				{
+					
+					cout << temp->data << " -> ";
+					temp = temp->next;
+				}
+				//cout << temp->data;
+			}
+			cout << endl;
+			//cout << endl;
+		}
+		
+		void DeleteFirstLl()
+		{
+			if (Head == NULL)
+			{
+				cout << "There is no linkedlist" << endl;
+			}
+			else
+			{
+				temp = Head;
+
+				Head = temp->next;
+				cout << "First eleent has been deleted" << temp->data << endl;
+				free(temp);
+			
+			}
+			cout << endl;
+		}
+
+		void DeleteLastLl()
+		{
+			if (Head == NULL)
+			{
+				cout << " There is no LL" << endl;
+			}
+			else
+			{
+
+				temp = Head;
+				
+				while (temp->next != NULL)
+				{
+					temp = temp->next;
+				}
+				cout << "Last Element Has been deleted" << temp->data << endl;
+
+				(temp->prev)->next = NULL;
+				free(temp);
+
+			}
+		}
+
+		void DeleteAnyLl(int Data)
+		{
+			node* temp1 = NULL;
+			
+			if (Head == NULL)
+			{
+				cout << "NO LL is there" << endl;
+
+			}
+				temp = Head;
+				temp1 = temp->next;
+				
+
+				while (temp != NULL)
+				{
+					if (temp == Head)
+					{
+						DeleteFirstLl();
+					}
+
+
+					if (temp1->data == Data)
+					{
+						cout << temp->data << endl;
+						free(temp);
+						temp = temp->next;
+						temp1 = temp1->next;
+					}
+				}
+			/*else
+			{
+				
+				temp = Head;
+
+				while (temp  != NULL)
+				{
+					if ((temp -> data ) == data)
+					{
+						cout << temp->data << " is deleted" << endl;
+						free(temp);
+						break;
+						
+					}
+					else
+					{
+						cout << "no such data fount" << endl;
+						break;
+					}
+					temp = temp->next;
+				}
+				
+			}*/
+
+			
+		}
+};
+
+int main()
+{
+
+	Doubbly obj;
+
+	int choice;
+	do
+	{
+		
+		cout << "1.CREATE THE DOUBLY LL" << endl;
+		cout << "2.DISPLAY THE LL" << endl;
+		cout << "3.To delete first element" << endl;
+		cout << "4.To delete last element" << endl;
+		cout << "5.To delete any element" << endl;
+		cout << "6.PRESS 0 FOR EXIST" << endl;
+		cout << "ENTER  THE CHOICE" << endl;
+		cin >> choice;
+		cout << endl;
+
+		switch (choice)
+		{
+			case 1:
+				obj.DoublyLL();
+				break;
+
+			case 2:
+				obj.Display();
+				break;
+
+			case 3:
+				obj.DeleteFirstLl();
+				break;
+
+			case 4:
+				obj.DeleteLastLl();
+				break;
+				
+			case 5:
+				int Data;
+				cout << "Enter the Data that you want to delete in ll" << endl;
+				cin >> Data;
+				obj.DeleteAnyLl(Data);
+				break;
+		}
+
+	} while (choice != 0);
+
+	return 0;
+}
