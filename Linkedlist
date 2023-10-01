@@ -1,0 +1,102 @@
+// linked list
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int data;
+	struct node* next;
+};
+
+class linkedList
+{
+	public:
+		
+		node* head = NULL;
+		node* temp = NULL;
+
+	struct node* createnode()
+	{
+		int Data;
+		node* newnode = new node();
+
+		cout << "ENTER THE DATA " << endl;
+		cin >> Data;
+
+		if (newnode != NULL)
+		{
+			newnode->data = Data;
+			newnode->next = NULL;
+		}
+		else
+		{
+			cout << "MEMORY IS NOT ALLOCATED" << endl;
+		}
+
+		return newnode;
+	}
+
+	void createLinkedList()
+	{
+		node* newnode1 = NULL;
+
+		newnode1 = createnode();
+
+		if (head == NULL)
+		{
+			head = newnode1;
+			return;
+		}
+
+		temp = head;
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = newnode1;
+		cout<<endl;
+	}
+
+	void displayLinkedList()
+	{
+		 temp = head;
+		while (temp != NULL)
+		{
+			cout << temp->data;
+			if (temp->next != NULL)
+				cout << "->";
+			temp = temp->next;
+		}
+		cout << endl;
+	}
+
+};
+int main()
+{
+	linkedList obj;
+	int choice;
+
+	do
+	{
+		cout << "ENTER THE CHOICE:" << endl;
+		cout << "1.CREATELL" << endl;
+		cout << "2.DISPLAYLL" << endl;
+		cout << "0.exit" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+			case 1: obj.createLinkedList();
+				break;
+
+			case 2: obj.displayLinkedList();
+				break;
+
+		}
+
+
+	} while (choice!=0);
+
+	return 0;
+
+}
