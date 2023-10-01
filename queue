@@ -1,0 +1,110 @@
+#include<iostream>
+using namespace std;
+#define MAX 1000
+
+class queue
+{
+	public:
+
+		int que[MAX];
+		int rear;
+		int front;
+
+		queue()
+		{
+			front = -1;
+			rear = -1;
+		}
+
+	void enqueue(int data)
+	{
+		if (rear == (MAX -1) )
+		{
+			cout << "QUEUE IS EMPTY:" << endl;
+		}
+
+		else if(rear == -1 && front == -1 )
+		{
+			front = rear = 0;
+			que[rear] = data;
+		}
+		else
+		{
+			front++;
+			que[front] = data;
+
+		}
+	}
+
+	void dequeue()
+	{
+		if (rear == -1 && front ==-1 )
+		{
+			cout << "QUUEUE IS UNDERFLOW" << endl;
+		}
+		else if (front ==rear )
+		{
+			rear = front = -1;
+			//cout << " deleted val is" << que[rear] << endl;
+			
+		}
+		
+		else
+		{
+			cout << " deleted val is"<<que[rear] << endl;
+			rear++;
+		}
+	}
+
+	void display()
+	{
+		int i = 0; 
+
+		if (rear == -1 && front == -1)
+		{
+			cout << "Queue is empty" << endl;
+			return;
+		}
+		else
+		{
+			for ( i = rear; i < front + 1; i++)
+			{
+				cout << que[i];
+			}
+			cout << endl;
+		}
+	}
+};
+
+
+int main()
+{
+	queue obj;
+	int choice;
+	do
+	{
+		cout << "1.enqueue" << endl;
+		cout << "2.dequeue" << endl;
+		cout << "3.display" << endl;
+		cout << "0.exit" << endl;
+		cout << "ENTER THE CHOICE" << endl;
+		cin >> choice;
+
+		switch (choice)
+		{
+			case 1:
+				int data;
+				cout << "ENTER THE DATA" << endl;
+				cin >> data;
+				obj.enqueue(data);
+				break;
+
+			case 2:
+				obj.dequeue();
+				break;
+		}
+
+	} while (choice != 0);
+
+	return 0;
+}
