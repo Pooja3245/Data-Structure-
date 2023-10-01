@@ -1,0 +1,105 @@
+//stack {static}
+#include<iostream>
+using namespace std;
+#define MAX 1000
+
+class stack1
+{
+public:
+	int stk[MAX];
+	int top =-1;
+
+	void push(int data)
+	{
+
+		if (top == (MAX - 1))
+		{
+			cout << "stack is overflow" << endl<<endl;
+		}
+		else
+		{
+			top++;
+			stk[top] = data;
+			cout << endl << endl;
+		}
+		 
+	}
+
+	void pop()
+	{
+		int del;
+		if (top < 0)
+		{
+			cout << "stack is underflow" << endl<<endl;
+		}
+		else
+		{
+				del = stk[top];
+				top--;
+			cout << del<<endl<<endl;
+		}
+	}
+	void top1()
+	{
+		if (top == -1)
+		{
+			cout << "no element" << endl << endl;
+		}
+		else
+			cout << "Top element is "<<stk[top] << endl << endl;
+	}
+	void display()
+	{
+		int i;
+		for (i = top; i >= 0; i--)
+		{
+			cout << stk[i];
+		}
+
+		cout << endl;
+	}
+
+};
+
+int main()
+{
+	stack1 obj;
+	int choice;
+
+	do {
+		cout << "ENTER THE CHOICE" << endl;
+		cout << "1.push"<<endl;
+		cout << "2.pop"<<endl;
+		cout << "3.top"<<endl;
+		cout << "4.display" << endl;
+		cout << "0.exit" << endl;
+
+		cin >> choice;
+
+		switch (choice)
+		{
+			case 1:
+				int x;
+				cout << "enter the element" << endl;
+				cin >> x;
+				obj.push(x);
+				break;
+
+			case 2:
+				 obj.pop();
+				break;
+
+			case 3:
+				obj.top1();
+				break;
+
+			case 4:
+				obj.display();
+				break;
+
+		}
+
+	   } while (choice != 0);
+
+	return 0;
+}
